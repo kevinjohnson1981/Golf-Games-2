@@ -339,3 +339,33 @@ select {
   vertical-align: middle;
   height: 100px; /* Ensures good height */
 }
+
+.export-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: darkgreen;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin: 10px 0;
+}
+
+.export-button:hover {
+  background-color: green;
+}
+
+.reset-button {
+  padding: 10px 15px;
+  font-size: 14px;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.reset-button:hover {
+  background-color: darkred;
+}

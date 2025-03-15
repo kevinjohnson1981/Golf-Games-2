@@ -1,12 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import html2canvas from "html2canvas";
+
+const STORAGE_KEY = "golf_scorecard_scores"; // Unique name for our storage
+
+
 
 function Scorecard({ selectedCourse, selectedTee, gameFormat, playType, players, teamNames, matchLength }) {
   const teeData = Object.values(selectedCourse.tees).flat().find(
     (tee) => tee.tee_name === selectedTee
   );
 
+  const scorecardRef = useRef(null); // This will "point" to our scorecard
+
   const numHoles = teeData.holes.length;
-  const [scores, setScores] = useState(players.map(() => Array(numHoles).fill("")));
+
+  const [scores, setScores] = useState(() => {
+    const savedScores = localStorage.getItem(STORAGE_KEY);
+    if (savedScores) {
+      return JSON.parse(savedScores); // If found, load them
+    } else {
+      return players.map(() => Array(numHoles).fill("")); // If not, start fresh
+    }
+  });
+
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(scores)); // Save scores as a string
+  }, [scores]); // Run this every time scores change  
 
   const handleScoreChange = (playerIndex, holeIndex, value) => {
     const newScores = [...scores];
@@ -123,11 +142,11 @@ const getTeamHoleWinner = (holeIndex) => {
 
 const getGameStatus = () => {
   if (gameFormat === "match") {
-    return `Match Status: ${playType === "team" ? getTeamMatchStatus() : getMatchStatus()}`;
+    return `Match Status: ${playType === "Team" ? getTeamMatchStatus() : getMatchStatus()}`;
   } else if (gameFormat === "stableford") {
     return `Stableford: ${getStablefordLeader()}`;
   } else if (gameFormat === "stroke") {
-    return "Stroke Play - See scores below";
+    return "Stroke Play - See Scores Below";
   } else {
     return ""; // In case of undefined gameFormat
   }
@@ -187,10 +206,52 @@ const getTeamBack9MatchStatus = () => {
   return "All Square (Back 9)";
 };
 
+const handleDownloadImage = () => {
+  if (scorecardRef.current) {
+    const scrollableDivs = scorecardRef.current.querySelectorAll('.table-wrapper');
+
+    // Save original styles
+    const originalStyles = Array.from(scrollableDivs).map(div => ({
+      maxHeight: div.style.maxHeight,
+      overflow: div.style.overflow,
+    }));
+
+    // Expand each scrollable div
+    scrollableDivs.forEach(div => {
+      div.style.maxHeight = 'none'; // Remove height limit
+      div.style.overflow = 'visible'; // Ensure all content shows
+    });
+
+    // Now capture the entire scorecard
+    html2canvas(scorecardRef.current, { scale: 2 }).then((canvas) => {
+      const link = document.createElement("a");
+      link.download = "scorecard.png";
+      link.href = canvas.toDataURL();
+      link.click();
+
+      // Restore original styles
+      scrollableDivs.forEach((div, idx) => {
+        div.style.maxHeight = originalStyles[idx].maxHeight;
+        div.style.overflow = originalStyles[idx].overflow;
+      });
+    });
+  }
+};
+
+const handleResetScores = () => {
+  // Clear scores state (set everything back to empty)
+  setScores(players.map(() => Array(numHoles).fill("")));
+
+  // Also clear from localStorage
+  localStorage.removeItem(STORAGE_KEY);
+
+  alert("Scorecard has been reset!");
+};
 
 
   return (
     <div>
+      <div ref={scorecardRef}>
       <h2>Scorecard for {selectedCourse.course_name}</h2>
       <h3>Tee: {selectedTee}</h3>
       <h4>Game Format: {gameFormat === "match" ? "Match Play" : gameFormat === "stableford" ? "Stableford" : "Stroke Play"}</h4>
@@ -212,6 +273,9 @@ const getTeamBack9MatchStatus = () => {
         </>
       )}
 
+      
+
+      
         {/* Player Totals Row Above Header */}
 <div className="table-wrapper">
   <table className="header-table">
@@ -347,8 +411,19 @@ const getTeamBack9MatchStatus = () => {
 
         
       </table>
+      
       </div>
+      
       </div>
+      
+      </div>
+      <button onClick={handleDownloadImage} className="export-button">
+        Download Scorecard as Image
+      </button>
+      <button onClick={handleResetScores} className="reset-button">
+        Reset Scorecard
+      </button>
+
       </div>
   );
   };
