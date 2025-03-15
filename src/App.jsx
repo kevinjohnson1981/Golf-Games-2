@@ -19,7 +19,7 @@ function App() {
 
   return (
     <div className="container">
-      <h1>GOLF!</h1>
+      <h1>GOLF GAMES!</h1>
       <GolfCourseSelector
         setSelectedCourse={setSelectedCourse}
         setSelectedTee={setSelectedTee}
