@@ -16,27 +16,12 @@ function Scorecard({ selectedCourse, selectedTee, gameFormat, playType, players,
 
   const [scores, setScores] = useState(() => {
     const savedScores = localStorage.getItem(STORAGE_KEY);
-    const emptyScores = players.map(() => Array(numHoles).fill("")); // Default empty scores
-  
     if (savedScores) {
-      try {
-        const parsedScores = JSON.parse(savedScores);
-        // Check if saved data matches current players and holes
-        if (
-          Array.isArray(parsedScores) &&
-          parsedScores.length === players.length &&
-          parsedScores.every(row => Array.isArray(row) && row.length === numHoles)
-        ) {
-          return parsedScores; // Use saved scores if valid
-        }
-      } catch (e) {
-        console.error("Failed to parse saved scores:", e);
-      }
+      return JSON.parse(savedScores); // If found, load them
+    } else {
+      return players.map(() => Array(numHoles).fill("")); // If not, start fresh
     }
-  
-    return emptyScores; // If invalid or missing, return fresh empty scores
   });
-  
 
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(scores)); // Save scores as a string
@@ -438,15 +423,9 @@ const handleResetScores = () => {
       <button onClick={handleResetScores} className="reset-button">
         Reset Scorecard
       </button>
-  {/* Version footer */}
-  <footer className="version-footer">
-    <p>Golf Scorecard App — Version 1.0</p>
-  </footer>
 
       </div>
   );
   };
 
-
-  
 export default Scorecard;

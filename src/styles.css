@@ -74,19 +74,19 @@ select {
 
 
 button {
-  padding: 5px 10px;
-  font-size: 12px;
-  background-color: #6fc772;
-  color: white;
-  border: none;
+  padding: 10px 10px;
+  font-size: 16px;
+  background-color: darkgreen;
+  color: lightgreen;
+  border: white;
   border-radius: 10px;
   cursor: pointer;
   width: auto; /* Prevents full-width stretch */
-  margin: 5px; /* Add spacing if needed */
+  margin: 10px; /* Add spacing if needed */
 }
 
 button:hover {
-  background-color: #125718;
+  background-color: #349b3c;
 }
 
 button:focus,

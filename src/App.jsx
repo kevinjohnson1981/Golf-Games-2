@@ -19,7 +19,7 @@ function App() {
 
   return (
     <div className="container">
-      <h1>GOLF GAMES!</h1>
+      <h1>Thumbs Up Golf!</h1>
       <GolfCourseSelector
         setSelectedCourse={setSelectedCourse}
         setSelectedTee={setSelectedTee}
@@ -145,6 +145,9 @@ function App() {
             matchLength={matchLength} // ✅ Pass it down!
           />
       )}
+      <footer className="version-footer">
+    <p>Thumbs Up Golf App — Version 1.1</p>
+  </footer>
     </div>
 
     
