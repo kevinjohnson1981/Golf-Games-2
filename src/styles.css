@@ -179,13 +179,6 @@ tfoot, thead {
     padding: 8px;
     font-size: 12px;
   }
-  .vertical-text {
-    writing-mode: initial; /* Reset writing mode */
-    transform: rotate(-90deg); /* Rotate manually */
-    transform-origin: center center;
-    white-space: nowrap;
-    height: auto;
-  }
 }
 
 /* Specific Player Inputs */
