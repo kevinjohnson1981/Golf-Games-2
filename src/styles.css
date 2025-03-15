@@ -61,8 +61,6 @@ select {
 }
 
 .vertical-text {
-  writing-mode: vertical-rl;
-  text-orientation: upright;
   white-space: nowrap;
   padding: 5px;
   max-height: 100px;
@@ -107,7 +105,7 @@ label {
 
 /* ✅ Scrollable area */
 .table-wrapper {
-  max-height: 500px; /* Adjust height as needed */
+  max-height: 300px; /* Adjust height as needed */
   overflow-y: auto; /* Allow vertical scrolling */
   overflow-x: auto; /* Optional: allow horizontal if needed */
   margin-top: 5px;
@@ -189,7 +187,7 @@ input.player-input {
   margin-bottom: 12px;
   box-sizing: border-box;
 
-  border: 2px solid rgb(0, 129, 6); /* Light gray border */
+  border: 3px solid rgb(0, 129, 6); /* Light gray border */
   border-radius: 10px; /* ✅ Rounded corners */
   background-color: #fff; /* White background */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow */
@@ -203,7 +201,7 @@ input.handicap-input {
   margin-bottom: 12px;
   box-sizing: border-box;
 
-  border: 2px solid rgb(0, 129, 6); /* Light gray border */
+  border: 3px solid rgb(0, 129, 6); /* Light gray border */
   border-radius: 10px; /* ✅ Rounded corners */
   background-color: #fff; /* White background */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow */
@@ -215,7 +213,7 @@ body {
 }
 
 table {
-  background-color: white;
+  background-color: rgb(255, 255, 255);
 }
 
 thead, tfoot {
@@ -328,7 +326,7 @@ select {
 
 /* Ensure same padding and borders */
 .header-table th, .body-table td, .body-table th {
-  padding: 5px;
+  padding: 2px;
   text-align: center;
   vertical-align: middle;
   font-size: 12px;

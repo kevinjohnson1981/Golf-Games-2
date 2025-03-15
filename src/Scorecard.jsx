@@ -258,14 +258,38 @@ const getTeamBack9MatchStatus = () => {
   </colgroup>
       <thead>
         <tr>
-          <th className="narrow-column vertical-text">HOLE</th>
-          <th className="narrow-column vertical-text">PAR</th>
-          <th className="narrow-column vertical-text">YARDS</th>
-          <th className="narrow-column vertical-text">HCP</th>
-          {players.map((p, idx) => (
-            <th key={idx} className="player-column vertical-text">{p.name}</th>
+        <th className="vertical-text">
+          {"HOLE".split("").map((letter, idx) => (
+            <span key={idx}>{letter}<br/></span>
           ))}
-          <th className="winner-column vertical-text">Winner</th>
+        </th>
+        <th className="vertical-text">
+          {"PAR".split("").map((letter, idx) => (
+            <span key={idx}>{letter}<br/></span>
+          ))}
+        </th>
+        <th className="vertical-text">
+          {"YARDS".split("").map((letter, idx) => (
+            <span key={idx}>{letter}<br/></span>
+          ))}
+        </th>
+        <th className="vertical-text">
+          {"HCP".split("").map((letter, idx) => (
+            <span key={idx}>{letter}<br/></span>
+          ))}
+        </th>
+        {players.map((p, idx) => (
+          <th key={idx} className="player-column vertical-text">
+            {p.name.split("").map((letter, lidx) => (
+              <span key={lidx}>{letter}<br /></span>
+            ))}
+          </th>
+        ))}
+          <th className="vertical-text">
+          {"WINNER".split("").map((letter, idx) => (
+            <span key={idx}>{letter}<br/></span>
+          ))}
+        </th>
         </tr>
       </thead>
     </table>
