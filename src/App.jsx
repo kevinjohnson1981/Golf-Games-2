@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import GolfCourseSelector from "./GolfCourseSelector.jsx";
 import Scorecard from "./Scorecard.jsx";
+import logo from './assets/logo.png'; // Adjust the path based on where you put it
 
 function App() {
   const [selectedCourse, setSelectedCourse] = useState(null);
@@ -18,8 +19,13 @@ function App() {
   const [matchLength, setMatchLength] = useState("18"); // Default 18-hole match
 
   return (
+    <>
+    <div className="app-header">
+      <img src={logo} alt="App Logo" className="app-logo" />
+    </div>
+
     <div className="container">
-      <h1>Thumbs Up Golf!</h1>
+      {/* <h1>Thumbs Up Golf!</h1> */}
       <GolfCourseSelector
         setSelectedCourse={setSelectedCourse}
         setSelectedTee={setSelectedTee}
@@ -100,6 +106,7 @@ function App() {
               />
               <br /><br />
             </div>
+            
           )}
 
 {players.slice(0, playerCount).map((player, index) => (
@@ -149,9 +156,11 @@ function App() {
     <p>Thumbs Up Golf App — Version 1.1</p>
   </footer>
     </div>
-
     
+
+    </>
   );
 }
+
 
 export default App;

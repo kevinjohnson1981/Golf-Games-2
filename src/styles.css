@@ -10,7 +10,7 @@ body {
 .container {
   max-width: 800px; /* Control width */
   margin: 0 auto; /* Center horizontally */
-  padding: 20px;
+  padding: 0px;
   text-align: center; /* Center text */
 }
 
@@ -77,8 +77,8 @@ button {
   padding: 10px 10px;
   font-size: 16px;
   background-color: darkgreen;
-  color: lightgreen;
-  border: white;
+  color: rgb(173, 255, 173);
+  border: rgb(255, 255, 255);
   border-radius: 10px;
   cursor: pointer;
   width: auto; /* Prevents full-width stretch */
@@ -91,7 +91,7 @@ button:hover {
 
 button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  outline: 1px auto -webkit-focus-ring-color;
 }
 
 
@@ -368,4 +368,28 @@ select {
 
 .reset-button:hover {
   background-color: darkred;
+}
+
+.app-logo {
+  width: 150px; /* Adjust as needed */
+  height: auto; /* Maintain aspect ratio */
+  margin: 20px auto; /* Center and add space */
+  display: block; /* Make sure it centers */
+}
+
+.app-header {
+  text-align: center; /* Center everything inside */
+  margin-bottom: 1px; /* Space below the logo */
+}
+
+body {
+  font-family: 'Bubblegum Sans', sans-serif; /* Or 'Roboto', etc. */
+}
+
+h1, h2, h3, h4 {
+  font-weight: 500; /* Bold for headings */
+}
+
+p, td, th, input, button {
+  font-weight: 400; /* Normal weight for body text */
 }
